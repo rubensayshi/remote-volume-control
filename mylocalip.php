@@ -1,6 +1,6 @@
 <?php
 
-$ifconfig = shell_exec("ifconfig");
+$ifconfig = shell_exec("/sbin/ifconfig");
 
 $n = preg_match_all("/inet (addr:)?(\d.+?) /", $ifconfig, $m);
 

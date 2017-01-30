@@ -2,17 +2,22 @@
 
 DIR=$1
 
+echo $DIR
+
 if [[ "${DIR}" = "" ]]; then
     echo "missing dir"
     exit 1
 fi
 
-IP=$(php ${DIR}/mylocalip.php)
+IP=$(/usr/bin/php ${DIR}/mylocalip.php)
+
+echo $IP
 
 if ps -ef | grep -v grep | grep "\-t ${DIR}"; then
-        exit 0
+    echo "RUNNING"
+    exit 0
 else
-        nohup php -S ${IP}:65529 -t ${DIR} > /dev/null &
-        exit 0
+    nohup /usr/bin/php -S ${IP}:65529 -t ${DIR} &
+    echo "STARTED"
+    exit 0
 fi
-
