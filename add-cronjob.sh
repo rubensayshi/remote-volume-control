@@ -1,3 +1,3 @@
 #!/bin/bash
 
-(crontab -l; ./generate-cronjob-line.sh) | crontab -
+(crontab -l; $1/generate-cronjob-line.sh $1) | crontab -

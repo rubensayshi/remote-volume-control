@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "* * * * * `pwd`/run.sh `pwd` >> /home/`whoami`/remote-volume-control.log"
+echo "* * * * * $1/run.sh $1 >> $1/log"
