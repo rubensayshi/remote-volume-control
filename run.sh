@@ -1,11 +1,18 @@
-#!/bin/sh
+#!/bin/bash
 
-IP=$(php /work/remote-volume-control/mylocalip.php)
+DIR=$1
 
-if ps -ef | grep -v grep | grep "\-t /work/remote-volume-control"; then
+if [[ "${DIR}" = "" ]]; then
+    echo "missing dir"
+    exit 1
+fi
+
+IP=$(php ${DIR}/mylocalip.php)
+
+if ps -ef | grep -v grep | grep "\-t ${DIR}"; then
         exit 0
 else
-        nohup php -S ${IP}:65529 -t /work/remote-volume-control > /dev/null &
+        nohup php -S ${IP}:65529 -t ${DIR} > /dev/null &
         exit 0
 fi
 
